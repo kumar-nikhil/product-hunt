@@ -2,8 +2,17 @@
 
 {% block content %}
 
+{% if error %}
+
+<div class="alert alert-danger">
+<strong>Danger!</strong> {{error}}
+</div>
+
+{% endif %}
+
   <div class="signup-form">
     <form action="{% url 'signup' %}" method="POST">
+      {% csrf_token %}
       <h2>Sign Up</h2>
       <p>Please fill in this form to create an account!</p>
       <hr>

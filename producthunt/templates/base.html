@@ -39,7 +39,7 @@
       user-select: none;
     }
 
-    .h2{
+    .h2 {
       padding-top: 50px;
     }
 
@@ -110,8 +110,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+            <form id='logout' method="POST" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <input type="hidden" />
+            </form>
+            {% else %}
             <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>
             <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+            {% endif %}
+
             <!--          <a class="nav-item nav-link active" href="">Blog</a>-->
             <!-- <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
           </div>
