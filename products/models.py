@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 class Product(models.Model):
     title = models.CharField(max_length=100)
-    url = models.TextField(max_length=100)
+    url = models.TextField(max_length=500)
     pub_date = models.DateTimeField(blank=True, null=True, default=None)
     description = models.TextField(max_length=255)
     icon = models.ImageField(upload_to='icons/', blank=True)
@@ -17,7 +17,7 @@ class Product(models.Model):
         return self.title
 
     def summary(self):
-        return self.description[:50]
+        return self.description[:100] + "..."
 
-    def date_pretty(self):
+    def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
